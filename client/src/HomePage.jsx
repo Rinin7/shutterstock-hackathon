@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./HomePage.scss";
 
 import "./HomePage.scss";
 
@@ -157,13 +158,39 @@ class HomePage extends React.Component {
             Search
           </button>
         </form>
+<<<<<<< HEAD
         <div className="home__images">
           {this.state.imageArray.map((image) => (
             <div className="home__image-card" key={image.id}>
               <img src={image.assets.preview.url} className="home__image-preview" />
               <p className="home__image-description">{image.description}</p>
+=======
+        <div className="home__trending-container">
+          <div className="home__trending-gallery">
+            <div className="home__images">
+              {this.state.imageArray.map((image) => (
+                <div className="home__images-card" key={image.id}>
+                  <img src={image.assets.preview.url} className="home__images-preview" />
+                </div>
+              ))}
+>>>>>>> f53234096713ed50aa561640cda328ec805fecc5
             </div>
-          ))}
+          </div>
+          <div className="home__trending-other">
+            <h2 className="home__trending-other-subheader">Other Trending...</h2>
+            <ol className="home__trending-other-list">
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+            </ol>
+          </div>
         </div>
       </div>
     );

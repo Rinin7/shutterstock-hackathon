@@ -8,11 +8,6 @@
     100% {width:170px}
 }
 
-// @keyframes sideBarSlideIn{
-//     from{width:0px}
-//     to{width:200px;}
-// }
-
 .trending__title{
     display:flex;
     align-items:center;
@@ -27,4 +22,39 @@
         margin-top:5px;
         animation:showCity 0.2s ease-in;
     }
+}
+
+.home {
+  &__trending-container {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__trending-gallery {
+    width: 60%;
+  }
+
+  &__trending-other {
+    flex-basis: 1%;
+    flex-grow: 1;
+  }
+
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -12px 16px;
+    width: 100%;
+
+    &-card {
+      margin-bottom: 24px;
+      padding: 0 12px;
+      width: 33.3333%;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+
+    &-preview {
+      width: 100%;
+    }
+  }
 }
