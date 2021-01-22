@@ -20,6 +20,7 @@ class HomePage extends React.Component {
     imageThumbs: ["/logo192.png", "kitten", "turtles", "golf"],
     trending: true,
     sideTrending: ["vancouver1", "vancouver2"],
+    trendingImages: "#Vancouver Cool Stuff",
   };
 
   componentDidMount() {
@@ -101,6 +102,10 @@ class HomePage extends React.Component {
   };
 
   changeGlobal = () => {
+    this.setState({ imageThumbs: ["/dancer.gif", "kitten", "turtles", "golf"], trending: true, trendingImages: "#Global Cool Stuff" });
+  };
+
+  changeGlobal = () => {
     this.setState({ imageThumbs: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: true });
   };
 
@@ -114,13 +119,21 @@ class HomePage extends React.Component {
           <img className="shutterstock__header-nav" src="/shutterstock_nav.png" />
         </div>
         <div className="trending__title">
-          <h1>
-            Trending in <span>{this.state.searchInput}</span>
-          </h1>
+          {this.state.trending && (
+            <h1>
+              Trending in <span>{this.state.searchInput}</span>
+            </h1>
+          )}
+          {!this.state.trending && (
+            <h1>
+              Images For <span>{this.state.trendingImages}</span>
+            </h1>
+          )}
+
           {this.state.showCity && <input className="trending__title-city" onKeyDown={this.changeCity} type="text" placeholder="City"></input>}
           <img onClick={this.showCity} className="trending__title-edit" src="edit-24px.svg" alt="" />
         </div>
-        <p>Top 6 topics current #trending </p>
+        <p className="trending__body">Top 6 topics currently #trending </p>
         <div className="home__trending-container">
           <div className="home__trending-gallery">
             <div className="home__images">
