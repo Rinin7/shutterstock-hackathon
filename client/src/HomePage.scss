@@ -46,13 +46,11 @@
 
   &__trending-gallery {
     width: 60%;
-    background-color: blue;
   }
 
   &__trending-other {
     flex-basis: 1%;
     flex-grow: 1;
-    background-color: red;
     margin-left: 10px;
   }
 
@@ -68,6 +66,9 @@
       width: 33.3333%;
       flex-wrap: wrap;
       box-sizing: border-box;
+    }
+    &-titles{
+        text-align:center;
     }
 
     &-preview {

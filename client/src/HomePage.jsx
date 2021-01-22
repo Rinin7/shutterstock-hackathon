@@ -13,11 +13,11 @@ const SHUTTERSTOCK_API_TOKEN =
 
 class HomePage extends React.Component {
   state = {
-    imageArray: ["/edit-24px.svg", "kitten", "turtles", "golf"],
-    searchInput: "Vancouver",
+    imageArray: ["/bitcoin.png", "/bitcoin.png", "vaccine.png", "/blues.png", "farmer-protest.png", "storm.png"],//ryan's 10
+    searchInput: "Toronto",
     showCity: false,
-    searchArray: ["react", "kitten", "turtles", "golf"],
-    imageThumbs: ["/logo192.png", "kitten", "turtles", "golf"],
+    searchArray: ["#outdoorSkating", "#bitcoin", "#vaccineRollout", "#lockdownBlues", "#farmerProtest", "#storm"],
+    imageThumbs: ["/bitcoin.png", "/bitcoin.png", "vaccine.png", "/blues.png", "farmer-protest.png", "storm.png"],
     trending: true,
     sideTrending: ["vancouver1", "vancouver2"],
     trendingImages: "#Vancouver Cool Stuff",
@@ -141,10 +141,11 @@ class HomePage extends React.Component {
                 this.state.imageThumbs.map((image, index) => (
                   <div className="home__images-card" key={image.id}>
                     <img id={this.state.searchArray[index]} onClick={this.clickHandler} src={image} className="home__images-preview" />
+                    <p className="home__images-titles"> {this.state.searchArray[index]}</p>
                   </div>
                 ))}
               {!this.state.trending &&
-                this.state.imageArray.map((image) => (
+                this.state.imageArray.map((image,index) => (
                   <div className="home__images-card" key={image.id}>
                     <img src={image} className="home__images-preview" />
                   </div>
