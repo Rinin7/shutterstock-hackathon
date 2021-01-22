@@ -13,7 +13,7 @@ const SHUTTERSTOCK_API_TOKEN =
 
 class HomePage extends React.Component {
   state = {
-    imageArray: ["/skating1.png", "/skating2.png", "skating3.png", "/skating4.png", "skating5.png", "skating6.png","skating7.png","skating8.png","skating9.png","skating10.png"],//ryan's 10
+    imageArray: ["/skating1.png", "/skating2.png", "skating3.png", "/skating4.png", "skating5.png", "skating6.png", "skating7.png", "skating8.png", "skating9.png", "skating10.png"], //ryan's 10
     searchInput: "Toronto",
     showCity: false,
     searchArray: ["#outdoorSkating", "#bitcoin", "#vaccineRollout", "#lockdownBlues", "#farmerProtest", "#storm"],
@@ -75,7 +75,7 @@ class HomePage extends React.Component {
   clickHandler = (event) => {
     event.preventDefault();
     this.setState({
-      imageArray: ["/skating1.png", "/skater2.jpg", "skating3.png", "/skating4.png", "skating5.png", "skating6.png","skating7.png","skating8.png","skating9.png","skating10.png"],
+      imageArray: ["/skating1.png", "/skater2.jpg", "skating3.png", "/skating4.png", "skating5.png", "skating6.png", "skating7.png", "skating8.png", "skating9.png", "skating10.png"],
       trending: false,
     });
   };
@@ -94,10 +94,13 @@ class HomePage extends React.Component {
     if (event.key === "Enter" && event.target.value !== "") {
       this.setState({ showCity: false, searchInput: "Ottawa" });
 
-      this.setState({ 
+      this.setState({
         searchArray: ["#outdoorSkating", "#ottawaSenators", "#parliament", "#lockdownBlues", "#justinTrudeau", "#bitcoin"],
-        imageThumbs: ["/skater2.jpg", "/ottawasenators.png", "parliament.png", "blues.png", "justintrudeau.png", "bitcoin.png"], 
-        trending: true, sideTrending: ["Ottawa1", "Ottawa2"] });    }
+        imageThumbs: ["/skater2.jpg", "/ottawasenators.png", "parliament.png", "blues.png", "justintrudeau.png", "bitcoin.png"],
+        trending: true,
+        sideTrending: ["Ottawa1", "Ottawa2"],
+      });
+    }
   };
 
   changeGlobal = () => {
@@ -105,8 +108,11 @@ class HomePage extends React.Component {
   };
 
   changeGlobal = () => {
-    this.setState({ 
-      imageArray: ["/xbox1.png", "/xbox2.png", "/xbox3.png", "/xbox4.png", "/xbox5.png","/xbox6.png","/xbox7.png","/xbox8.png","/xbox9.png","/xbox10.png"], trending: false, trendingImages: "#xbox" });
+    this.setState({
+      imageArray: ["/xbox1.png", "/xbox2.png", "/xbox3.png", "/xbox4.png", "/xbox5.png", "/xbox6.png", "/xbox7.png", "/xbox8.png", "/xbox9.png", "/xbox10.png"],
+      trending: false,
+      trendingImages: "#xbox",
+    });
   };
 
   render() {
@@ -120,13 +126,18 @@ class HomePage extends React.Component {
         </div>
         <div className="trending__title">
           {this.state.trending && (
+<<<<<<< HEAD
             <h1>
               Popular in <span>{this.state.searchInput}</span>
+=======
+            <h1 className="trending__title-first">
+              Trending in <span className="trending__title-second">{this.state.searchInput}</span>
+>>>>>>> cae81e3360208d4cd22afcda113f916b2ce576bc
             </h1>
           )}
           {!this.state.trending && (
-            <h1>
-              Images For <span>{this.state.trendingImages}</span>
+            <h1 className="trending__title-first">
+              Images For <span className="trending__title-second">{this.state.trendingImages}</span>
             </h1>
           )}
 
@@ -141,11 +152,11 @@ class HomePage extends React.Component {
                 this.state.imageThumbs.map((image, index) => (
                   <div className="home__images-card" key={image.id}>
                     <img id={this.state.searchArray[index]} onClick={this.clickHandler} src={image} className="home__images-preview" />
-                    <p className="home__images-titles"> {this.state.searchArray[index]}</p>
+                    <p className="home__images-titles trending_small"> {this.state.searchArray[index]}</p>
                   </div>
                 ))}
               {!this.state.trending &&
-                this.state.imageArray.map((image,index) => (
+                this.state.imageArray.map((image, index) => (
                   <div className="home__images-card" key={image.id}>
                     <img src={image} className="home__images-preview" />
                   </div>
