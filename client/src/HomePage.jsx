@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./HomePage.scss";
 
 // apiUsername = "g7pamN78drpuk78IhPLBfLJrUyCZhvoT";
 // apiPassword = "t8uM9TYDNyfQQGSW";
@@ -106,35 +107,31 @@ class HomePage extends React.Component {
             Search
           </button>
         </form>
-        <ul className="home__trending">
-          <li className="home__trending-item">
-            <a href="#puppies" onClick={this.clickHandler}>
-              #Puppies
-            </a>
-          </li>
-          <li className="home__trending-item">
-            <a href="#kitties" onClick={this.clickHandler}>
-              #Kitties
-            </a>
-          </li>
-          <li className="home__trending-item">
-            <a href="#turtles" onClick={this.clickHandler}>
-              #Turtles
-            </a>
-          </li>
-          <li className="home__trending-item">
-            <a href="#golf" onClick={this.clickHandler}>
-              #Golf
-            </a>
-          </li>
-        </ul>
-        <div className="home__images">
-          {this.state.imageArray.map((image) => (
-            <div className="home__image-card" key={image.id}>
-              <img src={image.assets.preview.url} className="home__image-preview" />
-              <p className="home__image-description">{image.description}</p>
+        <div className="home__trending-container">
+          <div className="home__trending-gallery">
+            <div className="home__images">
+              {this.state.imageArray.map((image) => (
+                <div className="home__images-card" key={image.id}>
+                  <img src={image.assets.preview.url} className="home__images-preview" />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="home__trending-other">
+            <h2 className="home__trending-other-subheader">Other Trending...</h2>
+            <ol className="home__trending-other-list">
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+              <li className="home__trending-other-item">#biden</li>
+            </ol>
+          </div>
         </div>
       </div>
     );
