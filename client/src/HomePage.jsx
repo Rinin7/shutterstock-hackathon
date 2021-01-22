@@ -158,13 +158,6 @@ class HomePage extends React.Component {
             Search
           </button>
         </form>
-<<<<<<< HEAD
-        <div className="home__images">
-          {this.state.imageArray.map((image) => (
-            <div className="home__image-card" key={image.id}>
-              <img src={image.assets.preview.url} className="home__image-preview" />
-              <p className="home__image-description">{image.description}</p>
-=======
         <div className="home__trending-container">
           <div className="home__trending-gallery">
             <div className="home__images">
@@ -173,7 +166,6 @@ class HomePage extends React.Component {
                   <img src={image.assets.preview.url} className="home__images-preview" />
                 </div>
               ))}
->>>>>>> f53234096713ed50aa561640cda328ec805fecc5
             </div>
           </div>
           <div className="home__trending-other">
