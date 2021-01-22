@@ -1,0 +1,30 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+@keyframes showCity{
+    0% {width:0}
+    100% {width:170px}
+}
+
+// @keyframes sideBarSlideIn{
+//     from{width:0px}
+//     to{width:200px;}
+// }
+
+.trending__title{
+    display:flex;
+    align-items:center;
+    &-edit{
+        margin-top:5px;
+    }
+    &-city{
+        padding:5px;
+        border-color: rgba(12,18,28,.12);
+        border-radius: 10px;
+        color: rgba(12,18,28,.87);
+        margin-top:5px;
+        animation:showCity 0.2s ease-in;
+    }
+}

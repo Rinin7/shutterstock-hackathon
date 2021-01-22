@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import "./HomePage.scss";
+
 // apiUsername = "g7pamN78drpuk78IhPLBfLJrUyCZhvoT";
 // apiPassword = "t8uM9TYDNyfQQGSW";
 // const apiKey = "?api_key=g7pamN78drpuk78IhPLBfLJrUyCZhvoT";
@@ -12,6 +14,9 @@ class HomePage extends React.Component {
   state = {
     imageArray: [],
     searchInput: "",
+    showCity:false,
+    searchArray:["puppies", "kitten", "turtles", "golf"],
+    imageThumbs:[]
   };
 
   componentDidMount() {
@@ -66,7 +71,6 @@ class HomePage extends React.Component {
   clickHandler = (event) => {
     event.preventDefault();
     console.log(this.state.searchInput);
-    // console.log(event);
     this.setState({
       searchInput: event.target.innerText,
     });
@@ -94,40 +98,65 @@ class HomePage extends React.Component {
     });
   };
 
+  showCity = () =>{
+    this.setState({showCity:true});
+  }
+
+  changeCity = (event) => {
+    // console.log(event.target);
+
+    if(event.key ==="Enter" && event.target.value !== ""){
+      this.setState({showCity:false});
+      axios.get("http://localhost:8080/trending")
+      .then(res=>{
+        console.log(res);
+        this.setState({searchArray:res.data});
+      })
+    }
+  }
+
+
+
+    // axios
+    //   .get(`https://api.shutterstock.com/v2/images/search`, {
+    //     params: {
+    //       query: event.target.innerText,
+    //     },
+    //     headers: {
+    //       Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(this.state.searchInput);
+    //     this.setState({
+    //       imageArray: res.data.data,
+    //       searchInput: "",
+    //     });
+    //   });
+  // };
+
+
   render() {
-    console.log(this.state.imageArray);
+    // console.log(this.state.imageArray);
 
     return (
       <div className="home">
-        <h1>SHUTTERSTOCK HOME</h1>
+        <div className="shutterstock__header">
+          <img src="/shutterstock_nav.png"/>
+          <img src="/shutterstock_search.png"/>
+        </div>
+        <div className="trending__title">
+          <h1>Trending in <span>Vancouver</span></h1>
+          {this.state.showCity && <input className="trending__title-city" onKeyDown={this.changeCity}type="text" placeholder="City"></input>}
+          <img onClick={this.showCity} className="trending__title-edit" src="edit-24px.svg" alt=""/>
+        </div>
+        <p>Top 6 topics current #trending </p>
         <form className="home__form" onSubmit={(event) => this.searchImages(event)}>
           <input type="text" className="home__form-searchbar" id="search" name="search" onChange={this.changeHandler} value={this.state.searchInput} placeholder="Search for images" />
           <button type="submit" className="home__form-submit">
             Search
           </button>
         </form>
-        <ul className="home__trending">
-          <li className="home__trending-item">
-            <a href="#puppies" onClick={this.clickHandler}>
-              #Puppies
-            </a>
-          </li>
-          <li className="home__trending-item">
-            <a href="#kitties" onClick={this.clickHandler}>
-              #Kitties
-            </a>
-          </li>
-          <li className="home__trending-item">
-            <a href="#turtles" onClick={this.clickHandler}>
-              #Turtles
-            </a>
-          </li>
-          <li className="home__trending-item">
-            <a href="#golf" onClick={this.clickHandler}>
-              #Golf
-            </a>
-          </li>
-        </ul>
         <div className="home__images">
           {this.state.imageArray.map((image) => (
             <div className="home__image-card" key={image.id}>
