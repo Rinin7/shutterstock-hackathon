@@ -19,16 +19,18 @@
 .trending__title {
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 85px;
+  margin-bottom: 20px;
   &-edit {
     margin-top: 5px;
+    margin-left: 10px;
   }
   &-city {
     padding: 5px;
     border-color: rgba(12, 18, 28, 0.12);
     border-radius: 10px;
     color: rgba(12, 18, 28, 0.87);
-    margin-top: 5px;
+    margin: 5px 0 0 10px;
     animation: showCity 0.2s ease-in;
   }
 }
@@ -62,6 +64,7 @@
     display: flex;
     flex-flow: row wrap;
     padding: 0 20px;
+    justify-content: space-evenly;
   }
 
   &__trending-gallery {
@@ -74,9 +77,8 @@
     margin-left: 10px;
   }
   &__trending-img {
-    width:542px;
-
-}
+    width: 542px;
+  }
 
   &__images {
     display: flex;
@@ -96,8 +98,8 @@
     }
 
     &-preview {
-      width: 100%;
-      height: 150px;
+      width: 350px;
+      height: 230px;
     }
   }
 }
