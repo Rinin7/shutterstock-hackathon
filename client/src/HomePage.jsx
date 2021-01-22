@@ -15,11 +15,11 @@ class HomePage extends React.Component {
   state = {
     imageArray: ["/edit-24px.svg", "kitten", "turtles", "golf"],
     searchInput: "Vancouver",
-    showCity:false,
-    searchArray:["react", "kitten", "turtles", "golf"],
-    imageThumbs:["/logo192.png", "kitten", "turtles", "golf"],
-    trending:true,
-    sideTrending:["vancouver1", "vancouver2"]
+    showCity: false,
+    searchArray: ["react", "kitten", "turtles", "golf"],
+    imageThumbs: ["/logo192.png", "kitten", "turtles", "golf"],
+    trending: true,
+    sideTrending: ["vancouver1", "vancouver2"],
   };
 
   componentDidMount() {
@@ -74,40 +74,35 @@ class HomePage extends React.Component {
   clickHandler = (event) => {
     event.preventDefault();
     this.setState({
-          imageArray: ["/check_image.jpg", "kitten", "turtles", "golf"],
-          trending:false
-        });
- 
+      imageArray: ["/check_image.jpg", "kitten", "turtles", "golf"],
+      trending: false,
+    });
   };
 
   changeHandler = (event) => {
-    this.setState({searchInput: event.target.value,trending:false});
+    this.setState({ searchInput: event.target.value, trending: false });
   };
 
-  showCity = () =>{
-    this.setState({showCity:true});
-  }
+  showCity = () => {
+    this.setState({ showCity: true });
+  };
 
   changeCity = (event) => {
     // console.log(event.target);
 
-    if(event.key ==="Enter" && event.target.value !== ""){
-      this.setState({showCity:false, searchInput:"Ottawa"});
+    if (event.key === "Enter" && event.target.value !== "") {
+      this.setState({ showCity: false, searchInput: "Ottawa" });
 
-           
-      axios.get("http://localhost:8080/trending")
-      .then(res=>{
+      axios.get("http://localhost:8080/trending").then((res) => {
         console.log(res);
-        this.setState({searchArray:res.data, imageThumbs:["/edit-24px.svg", "kitten", "turtles", "golf"], trending:true, sideTrending:["Ottawa1", "Ottawa2"]})
-      })
-
+        this.setState({ searchArray: res.data, imageThumbs: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: true, sideTrending: ["Ottawa1", "Ottawa2"] });
+      });
     }
-  }
+  };
 
-  changeGlobal=()=>{
-    this.setState({imageThumbs:["/edit-24px.svg", "kitten", "turtles", "golf"], trending:true})
-  }
-
+  changeGlobal = () => {
+    this.setState({ imageThumbs: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: true });
+  };
 
   render() {
     console.log(this.state.searchArray);
@@ -116,35 +111,36 @@ class HomePage extends React.Component {
     return (
       <div className="home">
         <div className="shutterstock__header">
-          <img className="shutterstock__header-nav" src="/shutterstock_nav.png"/>
+          <img className="shutterstock__header-nav" src="/shutterstock_nav.png" />
         </div>
         <div className="trending__title">
-          <h1>Trending in <span>{this.state.searchInput}</span></h1>
-          {this.state.showCity && <input className="trending__title-city" onKeyDown={this.changeCity}type="text" placeholder="City"></input>}
-          <img onClick={this.showCity} className="trending__title-edit" src="edit-24px.svg" alt=""/>
+          <h1>
+            Trending in <span>{this.state.searchInput}</span>
+          </h1>
+          {this.state.showCity && <input className="trending__title-city" onKeyDown={this.changeCity} type="text" placeholder="City"></input>}
+          <img onClick={this.showCity} className="trending__title-edit" src="edit-24px.svg" alt="" />
         </div>
         <p>Top 6 topics current #trending </p>
         <div className="home__trending-container">
           <div className="home__trending-gallery">
             <div className="home__images">
-
-              {this.state.trending && this.state.imageThumbs.map((image,index) => (
-                <div className="home__images-card" key={image.id}>
-                  <img id={this.state.searchArray[index]} onClick={this.clickHandler} src={image} className="home__images-preview" />
-                </div>
-                ))
-              }
-              {!this.state.trending && this.state.imageArray.map((image) => (
-                <div className="home__images-card" key={image.id}>
-                  <img src={image} className="home__images-preview" />
-                </div>
-              ))
-              }
+              {this.state.trending &&
+                this.state.imageThumbs.map((image, index) => (
+                  <div className="home__images-card" key={image.id}>
+                    <img id={this.state.searchArray[index]} onClick={this.clickHandler} src={image} className="home__images-preview" />
+                  </div>
+                ))}
+              {!this.state.trending &&
+                this.state.imageArray.map((image) => (
+                  <div className="home__images-card" key={image.id}>
+                    <img src={image} className="home__images-preview" />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="home__trending-other">
             <h2 className="home__trending-other-subheader">Other Trending...</h2>
-            <img src="/logo192.png" onClick={this.changeGlobal}/>
+            <img src="/logo192.png" onClick={this.changeGlobal} />
           </div>
         </div>
       </div>
