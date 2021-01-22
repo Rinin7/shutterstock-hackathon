@@ -13,14 +13,14 @@ const SHUTTERSTOCK_API_TOKEN =
 
 class HomePage extends React.Component {
   state = {
-    imageArray: ["/bitcoin.png", "/bitcoin.png", "vaccine.png", "/blues.png", "farmer-protest.png", "storm.png"],//ryan's 10
+    imageArray: ["/skating1.png", "/skating2.png", "skating3.png", "/skating4.png", "skating5.png", "skating6.png","skating7.png","skating8.png","skating9.png","skating10.png"],//ryan's 10
     searchInput: "Toronto",
     showCity: false,
     searchArray: ["#outdoorSkating", "#bitcoin", "#vaccineRollout", "#lockdownBlues", "#farmerProtest", "#storm"],
-    imageThumbs: ["/bitcoin.png", "/bitcoin.png", "vaccine.png", "/blues.png", "farmer-protest.png", "storm.png"],
+    imageThumbs: ["/skating1.png", "/bitcoin.png", "vaccine.png", "/blues.png", "farmer-protest.png", "storm.png"],
     trending: true,
     sideTrending: ["vancouver1", "vancouver2"],
-    trendingImages: "#Vancouver Cool Stuff",
+    trendingImages: "#outdoorSkating",
   };
 
   componentDidMount() {
@@ -75,7 +75,7 @@ class HomePage extends React.Component {
   clickHandler = (event) => {
     event.preventDefault();
     this.setState({
-      imageArray: ["/check_image.jpg", "kitten", "turtles", "golf"],
+      imageArray: ["/skating1.png", "/skater2.jpg", "skating3.png", "/skating4.png", "skating5.png", "skating6.png","skating7.png","skating8.png","skating9.png","skating10.png"],
       trending: false,
     });
   };
@@ -94,11 +94,10 @@ class HomePage extends React.Component {
     if (event.key === "Enter" && event.target.value !== "") {
       this.setState({ showCity: false, searchInput: "Ottawa" });
 
-      axios.get("http://localhost:8080/trending").then((res) => {
-        console.log(res);
-        this.setState({ searchArray: res.data, imageThumbs: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: true, sideTrending: ["Ottawa1", "Ottawa2"] });
-      });
-    }
+      this.setState({ 
+        searchArray: ["#outdoorSkating", "#ottawaSenators", "#parliament", "#lockdownBlues", "#justinTrudeau", "#bitcoin"],
+        imageThumbs: ["/skater2.jpg", "/ottawasenators.png", "parliament.png", "blues.png", "justintrudeau.png", "bitcoin.png"], 
+        trending: true, sideTrending: ["Ottawa1", "Ottawa2"] });    }
   };
 
   changeGlobal = () => {
@@ -106,7 +105,8 @@ class HomePage extends React.Component {
   };
 
   changeGlobal = () => {
-    this.setState({ imageThumbs: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: true });
+    this.setState({ 
+      imageArray: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: false, trendingImages: "#xbox" });
   };
 
   render() {
@@ -133,7 +133,7 @@ class HomePage extends React.Component {
           {this.state.showCity && <input className="trending__title-city" onKeyDown={this.changeCity} type="text" placeholder="City"></input>}
           <img onClick={this.showCity} className="trending__title-edit" src="edit-24px.svg" alt="" />
         </div>
-        <p className="trending__body">Top 6 topics currently #trending </p>
+        {/* <p className="trending__body">Top 6 topics currently #trending </p> */}
         <div className="home__trending-container">
           <div className="home__trending-gallery">
             <div className="home__images">
@@ -153,8 +153,7 @@ class HomePage extends React.Component {
             </div>
           </div>
           <div className="home__trending-other">
-            <h2 className="home__trending-other-subheader">Other Trending...</h2>
-            <img src="/logo192.png" onClick={this.changeGlobal} />
+            <img className="home__trending-img" src="/side-image.png" onClick={this.changeGlobal} />
           </div>
         </div>
       </div>

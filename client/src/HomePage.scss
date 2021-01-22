@@ -70,9 +70,13 @@
 
   &__trending-other {
     flex-basis: 1%;
-    flex-grow: 1;
+    // flex-grow: 1;
     margin-left: 10px;
   }
+  &__trending-img {
+    width:542px;
+
+}
 
   &__images {
     display: flex;
