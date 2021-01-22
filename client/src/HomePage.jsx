@@ -121,7 +121,7 @@ class HomePage extends React.Component {
         <div className="trending__title">
           {this.state.trending && (
             <h1>
-              Trending in <span>{this.state.searchInput}</span>
+              Popular in <span>{this.state.searchInput}</span>
             </h1>
           )}
           {!this.state.trending && (
