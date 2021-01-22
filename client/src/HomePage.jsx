@@ -106,7 +106,7 @@ class HomePage extends React.Component {
 
   changeGlobal = () => {
     this.setState({ 
-      imageArray: ["/edit-24px.svg", "kitten", "turtles", "golf"], trending: false, trendingImages: "#xbox" });
+      imageArray: ["/xbox1.png", "/xbox2.png", "/xbox3.png", "/xbox4.png", "/xbox5.png","/xbox6.png","/xbox7.png","/xbox8.png","/xbox9.png","/xbox10.png"], trending: false, trendingImages: "#xbox" });
   };
 
   render() {
