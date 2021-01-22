@@ -13,90 +13,75 @@ const SHUTTERSTOCK_API_TOKEN =
 
 class HomePage extends React.Component {
   state = {
-    imageArray: [],
-    searchInput: "",
+    imageArray: ["/edit-24px.svg", "kitten", "turtles", "golf"],
+    searchInput: "Vancouver",
     showCity:false,
-    searchArray:["puppies", "kitten", "turtles", "golf"],
-    imageThumbs:[]
+    searchArray:["react", "kitten", "turtles", "golf"],
+    imageThumbs:["/logo192.png", "kitten", "turtles", "golf"],
+    trending:true,
+    sideTrending:["vancouver1", "vancouver2"]
   };
 
   componentDidMount() {
-    axios
-      .get("https://api.shutterstock.com/v2/images/search", {
-        params: {
-          query: "kittens",
-          fields: "data(id,assets/preview/url)",
-        },
-        headers: {
-          Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
-          // "User-Agent": "request",
-        },
-      })
-      .then((res) => {
-        // console.log(res);
-        // console.log(JSON.stringify(data.data, null, 2));
-        this.setState({
-          imageArray: res.data.data,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // axios
+    //   .get("https://api.shutterstock.com/v2/images/search", {
+    //     params: {
+    //       query: "kittens",
+    //       fields: "data(id,assets/preview/url)",
+    //     },
+    //     headers: {
+    //       Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
+    //       // "User-Agent": "request",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     // console.log(res);
+    //     // console.log(JSON.stringify(data.data, null, 2));
+    //     this.setState({
+    //       imageArray: res.data.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   }
 
   componentDidUpdate;
 
   searchImages(event) {
-    event.preventDefault();
-    this.setState({
-      searchInput: event.target.search.value,
-    });
-    axios
-      .get(`https://api.shutterstock.com/v2/images/search`, {
-        params: {
-          query: event.target.search.value,
-        },
-        headers: {
-          Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          imageArray: res.data.data,
-          searchInput: "",
-        });
-      });
+    // event.preventDefault();
+    // this.setState({
+    //   searchInput: event.target.search.value,
+    // });
+    // axios
+    //   .get(`https://api.shutterstock.com/v2/images/search`, {
+    //     params: {
+    //       query: event.target.search.value,
+    //     },
+    //     headers: {
+    //       Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     this.setState({
+    //       imageArray: res.data.data,
+    //       searchInput: "",
+    //     });
+    //   });
   }
 
   clickHandler = (event) => {
     event.preventDefault();
-    console.log(this.state.searchInput);
     this.setState({
-      searchInput: event.target.innerText,
-    });
-    axios
-      .get(`https://api.shutterstock.com/v2/images/search`, {
-        params: {
-          query: event.target.innerText,
-        },
-        headers: {
-          Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
-        },
-      })
-      .then((res) => {
-        console.log(this.state.searchInput);
-        this.setState({
-          imageArray: res.data.data,
-          searchInput: "",
+          imageArray: ["/check_image.jpg", "kitten", "turtles", "golf"],
+          trending:false
         });
-      });
+ 
   };
 
   changeHandler = (event) => {
-    this.setState({
-      searchInput: event.target.value,
-    });
+    this.setState({searchInput: event.target.value,trending:false});
   };
 
   showCity = () =>{
@@ -107,81 +92,59 @@ class HomePage extends React.Component {
     // console.log(event.target);
 
     if(event.key ==="Enter" && event.target.value !== ""){
-      this.setState({showCity:false});
+      this.setState({showCity:false, searchInput:"Ottawa"});
+
+           
       axios.get("http://localhost:8080/trending")
       .then(res=>{
         console.log(res);
-        this.setState({searchArray:res.data});
+        this.setState({searchArray:res.data, imageThumbs:["/edit-24px.svg", "kitten", "turtles", "golf"], trending:true, sideTrending:["Ottawa1", "Ottawa2"]})
       })
+
     }
   }
 
-
-
-    // axios
-    //   .get(`https://api.shutterstock.com/v2/images/search`, {
-    //     params: {
-    //       query: event.target.innerText,
-    //     },
-    //     headers: {
-    //       Authorization: `Bearer ${SHUTTERSTOCK_API_TOKEN}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(this.state.searchInput);
-    //     this.setState({
-    //       imageArray: res.data.data,
-    //       searchInput: "",
-    //     });
-    //   });
-  // };
+  changeGlobal=()=>{
+    this.setState({imageThumbs:["/edit-24px.svg", "kitten", "turtles", "golf"], trending:true})
+  }
 
 
   render() {
-    // console.log(this.state.imageArray);
+    console.log(this.state.searchArray);
+    console.log(this.state.imageArray);
 
     return (
       <div className="home">
         <div className="shutterstock__header">
-          <img src="/shutterstock_nav.png"/>
-          <img src="/shutterstock_search.png"/>
+          <img className="shutterstock__header-nav" src="/shutterstock_nav.png"/>
         </div>
         <div className="trending__title">
-          <h1>Trending in <span>Vancouver</span></h1>
+          <h1>Trending in <span>{this.state.searchInput}</span></h1>
           {this.state.showCity && <input className="trending__title-city" onKeyDown={this.changeCity}type="text" placeholder="City"></input>}
           <img onClick={this.showCity} className="trending__title-edit" src="edit-24px.svg" alt=""/>
         </div>
         <p>Top 6 topics current #trending </p>
-        <form className="home__form" onSubmit={(event) => this.searchImages(event)}>
-          <input type="text" className="home__form-searchbar" id="search" name="search" onChange={this.changeHandler} value={this.state.searchInput} placeholder="Search for images" />
-          <button type="submit" className="home__form-submit">
-            Search
-          </button>
-        </form>
         <div className="home__trending-container">
           <div className="home__trending-gallery">
             <div className="home__images">
-              {this.state.imageArray.map((image) => (
+
+              {this.state.trending && this.state.imageThumbs.map((image,index) => (
                 <div className="home__images-card" key={image.id}>
-                  <img src={image.assets.preview.url} className="home__images-preview" />
+                  <img id={this.state.searchArray[index]} onClick={this.clickHandler} src={image} className="home__images-preview" />
                 </div>
-              ))}
+                ))
+              }
+              {!this.state.trending && this.state.imageArray.map((image) => (
+                <div className="home__images-card" key={image.id}>
+                  <img src={image} className="home__images-preview" />
+                </div>
+              ))
+              }
             </div>
           </div>
           <div className="home__trending-other">
             <h2 className="home__trending-other-subheader">Other Trending...</h2>
-            <ol className="home__trending-other-list">
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-              <li className="home__trending-other-item">#biden</li>
-            </ol>
+            <img src="/logo192.png" onClick={this.changeGlobal}/>
           </div>
         </div>
       </div>
